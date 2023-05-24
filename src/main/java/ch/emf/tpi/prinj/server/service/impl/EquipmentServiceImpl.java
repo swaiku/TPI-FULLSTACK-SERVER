@@ -40,7 +40,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     public Equipment updateEquipment(Equipment updatedEquipment, Long id) {
         Equipment equipment = equipmentRepository.findById(id)
                 .orElseThrow(() -> new EquipmentNotFoundException(id));
-        BeanUtils.copyProperties(updatedEquipment, equipment, "inventoryNumber", "id");
+        // put the updatedEquipment values in the equipment, only if property is not null
         return equipmentRepository.save(equipment);
     }
 
