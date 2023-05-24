@@ -3,6 +3,9 @@ package ch.emf.tpi.prinj.server.controller;
 import ch.emf.tpi.prinj.server.service.EquipmentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ch.emf.tpi.prinj.server.entity.Equipment;
 import java.util.List;
@@ -14,23 +17,23 @@ public class EquipmentController {
     private final EquipmentService equipmentService;
 
     @GetMapping("/equipments")
-    List<Equipment> getEquipments() {
-        return equipmentService.getEquipments();
+    ResponseEntity<List<Equipment>> getEquipments() {
+        return ResponseEntity.ok(equipmentService.getEquipments());
     }
 
     @GetMapping("/equipments/{id}")
-    Equipment getEquipmentById(@PathVariable Long id) {
-        return equipmentService.getEquipmentById(id);
+    ResponseEntity<Equipment> getEquipmentById(@PathVariable Long id) {
+        return ResponseEntity.ok(equipmentService.getEquipmentById(id));
     }
 
     @PostMapping("/equipments")
-    Equipment newEquipment(@Valid @RequestBody Equipment newEquipment) {
-        return equipmentService.addEquipment(newEquipment);
+    ResponseEntity<Equipment> newEquipment(@Valid @RequestBody Equipment newEquipment) {
+        return new ResponseEntity<>(equipmentService.addEquipment(newEquipment), HttpStatus.CREATED);
     }
 
     @PutMapping("/equipments/{id}")
-    Equipment editEquipment(@Valid @RequestBody Equipment editEquipment, @PathVariable Long id) {
-        return equipmentService.updateEquipment(editEquipment, id);
+    ResponseEntity<Equipment> editEquipment(@Valid @RequestBody Equipment editEquipment, @PathVariable Long id) {
+        return ResponseEntity.ok(equipmentService.updateEquipment(editEquipment, id));
     }
 
     @DeleteMapping("/equipments/{id}")
