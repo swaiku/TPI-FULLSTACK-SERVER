@@ -1,6 +1,7 @@
 package ch.emf.tpi.prinj.server.controller;
 
 import ch.emf.tpi.prinj.server.service.EquipmentService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ch.emf.tpi.prinj.server.entity.Equipment;
@@ -23,12 +24,12 @@ public class EquipmentController {
     }
 
     @PostMapping("/equipments")
-    Equipment newEquipment(@RequestBody Equipment newEquipment) {
+    Equipment newEquipment(@Valid @RequestBody Equipment newEquipment) {
         return equipmentService.addEquipment(newEquipment);
     }
 
     @PutMapping("/equipments/{id}")
-    Equipment editEquipment(@RequestBody Equipment editEquipment, @PathVariable Long id) {
+    Equipment editEquipment(@Valid @RequestBody Equipment editEquipment, @PathVariable Long id) {
         return equipmentService.updateEquipment(editEquipment, id);
     }
 

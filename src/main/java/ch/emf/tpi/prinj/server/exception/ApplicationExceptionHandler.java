@@ -13,7 +13,14 @@ public class ApplicationExceptionHandler {
     @ResponseBody
     @ExceptionHandler(EquipmentNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    ResponseEntity<String> equipmentNotFoundHandler(EquipmentNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    ResponseEntity<ErrorResponse> equipmentNotFoundHandler(EquipmentNotFoundException exception) {
+        return new ResponseEntity<>(new ErrorResponse(exception.getMessage()), HttpStatus.NOT_FOUND);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(InventoryNumberAlreadyExistingException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ResponseEntity<ErrorResponse> inventoryNumberAlreadyExistingHandler(InventoryNumberAlreadyExistingException exception) {
+        return new ResponseEntity<>(new ErrorResponse(exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 }
