@@ -46,7 +46,7 @@ public class EquipmentServiceTests {
     }
 
     @Test
-    public void equipmentService_addEquipment_inventoryNumberAlreadyExist_ThrowConstraintViolationException() {
+    public void equipmentService_addEquipment_inventoryNumberAlreadyExist_ThrowInventoryNumberAlreadyExistingException() {
         given(employeeRepository.existsByInventoryNumber(equipment.getInventoryNumber())).willReturn(true);
 
         assertThrows(InventoryNumberAlreadyExistingException.class, () -> {

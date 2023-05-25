@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  server:
+    image: "prinj_tpi/server:latest"
+    container_name: "prinj_tpi_server"
+    restart: "always"
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_JSON: '{ 
+        "spring.datasource.url" : "jdbc:mariadb://db:3306/tpiDatabase?zeroDateTimeBehavior=convertToNull", 
+        "spring.datasource.username" : "root", 
+        "spring.datasource.password" : "$MARIADB_ROOT_PASSWORD", 
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MariaDBDialect",
+        "spring.datasource.testWhileIdle" : "true",
+        "spring.datasource.validationQuery" : "SELECT 1", 
+        "spring.jpa.hibernate.ddl-auto" : "update"
+        }'
+    links:
+      - db
+
+  db:
+    image: "mariadb:lts"
+    container_name: "prinj_tpi_db"
+    restart: 'always'
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
