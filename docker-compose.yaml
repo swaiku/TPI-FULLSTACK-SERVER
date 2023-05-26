@@ -12,10 +12,10 @@ services:
       - "6464:8080"
     environment:
       SPRING_APPLICATION_JSON: '{ 
-        "spring.datasource.url" : "jdbc:mysql://db:3306/$MYSQL_DATABASE?zeroDateTimeBehavior=convertToNull", 
-        "spring.datasource.username" : "$MYSQL_USER", 
+        "spring.datasource.url" : "jdbc:mariadb://db:3306/$MYSQL_DATABASE?zeroDateTimeBehavior=convertToNull", 
+        "spring.datasource.username" : "root", 
         "spring.datasource.password" : "$MYSQL_ROOT_PASSWORD", 
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MariaDBDialect",
         "spring.datasource.testWhileIdle" : "true",
         "spring.datasource.validationQuery" : "SELECT 1", 
         "spring.jpa.hibernate.ddl-auto" : "update"
@@ -32,4 +32,3 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
