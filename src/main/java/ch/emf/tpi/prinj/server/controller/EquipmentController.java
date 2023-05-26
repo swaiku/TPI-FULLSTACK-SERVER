@@ -4,7 +4,6 @@ import ch.emf.tpi.prinj.server.service.EquipmentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ch.emf.tpi.prinj.server.entity.Equipment;
@@ -16,7 +15,7 @@ import java.util.List;
 public class EquipmentController {
 
     private final EquipmentService equipmentService;
-
+    
     @GetMapping("/equipments")
     ResponseEntity<List<Equipment>> getEquipments() {
         return ResponseEntity.ok(equipmentService.getEquipments());
