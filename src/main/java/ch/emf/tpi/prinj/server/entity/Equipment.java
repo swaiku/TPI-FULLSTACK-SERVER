@@ -44,9 +44,8 @@ public class Equipment {
     @Column(name = "buy_date")
     private Date buyDate;
 
-    @DecimalMin(value="0.00")
-    @Digits(integer = 9, fraction = 2)
-    @Column(name = "buy_price", precision = 9, scale = 2)
-    private BigDecimal buyPrice;
+    @Min(value=0)
+    @Column(name = "buy_price")
+    private Integer buyPrice;
 }
 

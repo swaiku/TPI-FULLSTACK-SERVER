@@ -24,7 +24,7 @@ public class EquipmentRepositoryTests {
     public void equipmentRepository_existsByInventoryNumber_ReturnTrue() {
         Equipment equipment = Equipment.builder()
                 .name("equipment1")
-                .buyPrice(new BigDecimal("1.00"))
+                .buyPrice(100)
                 .inventoryNumber("1234")
                 .serialNumber("SN1234")
                 .buyDate(new Date()).build();

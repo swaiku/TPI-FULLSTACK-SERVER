@@ -18,9 +18,7 @@ import static org.mockito.BDDMockito.given;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,7 +39,7 @@ public class EquipmentServiceTests {
                 .name("equipment1")
                 .serialNumber("SN1234")
                 .inventoryNumber("1234")
-                .buyPrice(BigDecimal.valueOf(1.00))
+                .buyPrice(100)
                 .build();
     }
 
@@ -74,7 +72,7 @@ public class EquipmentServiceTests {
                 .name("")
                 .serialNumber("SN1234")
                 .inventoryNumber("")
-                .buyPrice(BigDecimal.valueOf(1.000))
+                .buyPrice(100)
                 .build();
 
         assertThrows(ConstraintViolationException.class, () -> {
@@ -100,7 +98,7 @@ public class EquipmentServiceTests {
                 .name("equipment1")
                 .inventoryNumber("12345")
                 .serialNumber("SN4321")
-                .buyPrice(BigDecimal.valueOf(2.00))
+                .buyPrice(100)
                 .build();
 
         Equipment exceptedEquipment = Equipment.builder()

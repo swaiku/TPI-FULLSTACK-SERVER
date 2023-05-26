@@ -3,7 +3,6 @@ package ch.emf.tpi.prinj.server.controller;
 import ch.emf.tpi.prinj.server.entity.Equipment;
 import ch.emf.tpi.prinj.server.exception.EquipmentNotFoundException;
 import ch.emf.tpi.prinj.server.service.EquipmentService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.ConstraintViolationException;
 import org.hamcrest.CoreMatchers;
@@ -22,7 +21,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 
@@ -54,7 +52,7 @@ public class EquipmentControllerTests {
         equipment = Equipment.builder()
                 .id(1L)
                 .name("equipment1")
-                .buyPrice(new BigDecimal("1.00"))
+                .buyPrice(100)
                 .inventoryNumber("1234")
                 .serialNumber("SN1234")
                 .buyDate(new Date()).build();
@@ -96,7 +94,7 @@ public class EquipmentControllerTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(equipment.getName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.inventoryNumber", CoreMatchers.is(equipment.getInventoryNumber())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.serialNumber", CoreMatchers.is(equipment.getSerialNumber())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice().doubleValue())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice())));
     }
 
     @Test
@@ -133,7 +131,7 @@ public class EquipmentControllerTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(equipment.getName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.inventoryNumber", CoreMatchers.is(equipment.getInventoryNumber())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.serialNumber", CoreMatchers.is(equipment.getSerialNumber())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice().doubleValue())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice())));
     }
     @Test
     public void equipmentController_CreateEquipment_Invalid_ReturnError400() throws Exception {
@@ -157,7 +155,7 @@ public class EquipmentControllerTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(equipment.getName())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.inventoryNumber", CoreMatchers.is(equipment.getInventoryNumber())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.serialNumber", CoreMatchers.is(equipment.getSerialNumber())))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice().doubleValue())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.buyPrice", CoreMatchers.is(equipment.getBuyPrice())));
     }
 
     @Test

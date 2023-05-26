@@ -11,6 +11,7 @@ import ch.emf.tpi.prinj.server.entity.Equipment;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @AllArgsConstructor
 public class EquipmentController {
 
