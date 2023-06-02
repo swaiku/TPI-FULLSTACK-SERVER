@@ -19,8 +19,8 @@ public class ApplicationExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(InventoryNumberAlreadyExistingException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     ResponseEntity<ErrorResponse> inventoryNumberAlreadyExistingHandler(InventoryNumberAlreadyExistingException exception) {
-        return new ResponseEntity<>(new ErrorResponse(exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(exception.getMessage()), HttpStatus.CONFLICT);
     }
 }
